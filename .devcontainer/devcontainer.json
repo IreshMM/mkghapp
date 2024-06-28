@@ -6,7 +6,8 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"DigitalBrainstem.javascript-ejs-support"
+				"DigitalBrainstem.javascript-ejs-support",
+				"yzhang.markdown-all-in-one"
 			]
 		}
 	}
