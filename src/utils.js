@@ -1,6 +1,21 @@
 const https = require('https')
 const fs = require('fs');
 
+function getManifestString() {
+    const manifestPath = process.env.MANIFEST_PATH || 'manifest.json';
+    var manifestString = fs.readFileSync(manifestPath, 'utf8');
+    manifestString = preProcessManifest(manifestString);
+    return manifestString;
+}
+
+function preProcessManifest(manifestString) {
+    const jsonObject = JSON.parse(manifestString);
+    const listenHost = process.env.LISTEN_HOST || 'localhost'
+    const listenPort = process.env.LISTEN_PORT || 3000;
+    jsonObject['redirect_url'] = `http://${listenHost}:${listenPort}/redirect`;
+    return JSON.stringify(jsonObject);
+}
+
 function getFormUrl() {
     const baseUrl = process.env.GITHUB_BASE_URL || 'https://github.com';
     const gitHubOrg = process.env.GITHUB_ORG;
@@ -87,5 +102,6 @@ async function writeAppInformation(code) {
 
 module.exports = {
     writeAppInformation,
-    getFormUrl
+    getFormUrl,
+    getManifestString
 };

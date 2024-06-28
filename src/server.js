@@ -8,7 +8,7 @@ app.set('view engine', 'ejs')
 const manifestPath = 'manifest.json'; 
 
 app.get('/', (req, res) => {
-    const manifestString = fs.readFileSync(manifestPath, 'utf8');
+    const manifestString = utils.getManifestString();
     const formUrl = utils.getFormUrl();
     res.render('index', {
         manifestString : manifestString,

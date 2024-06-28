@@ -1,0 +1,26 @@
+name: mkghapp
+services:
+  mkghapp:
+    build: .
+    image: ireshmm/mkghapp:latest
+    ports:
+      - "${LISTEN_PORT}:${LISTEN_PORT}"
+    environment:
+      GITHUB_BASE_URL: "${GITHUB_BASE_URL}"
+      GITHUB_API_HOST: "${GITHUB_API_HOST}"
+      GITHUB_ORG: "${GITHUB_ORG}"
+      LISTEN_HOST: "${LISTEN_HOST}"
+      LISTEN_PORT: "${LISTEN_PORT}"
+      OUTPUT_DIR: "${OUTPUT_DIR}"
+      MANIFEST_PATH: ${MANIFEST_PATH}
+    volumes:
+      - ./output:${OUTPUT_DIR}
+      - ./manifest.json:${MANIFEST_PATH}
+    develop:
+      watch:
+        - path: src
+          action: rebuild
+        - path: Dockerfile
+          action: rebuild
+        - path: docker-compose.yaml
+          action: rebuild

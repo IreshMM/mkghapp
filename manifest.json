@@ -1,6 +1,6 @@
 {
-  "name": "Octoapp",
-  "url": "https://www.example.com",
+  "name": "ExampleApp",
+  "url": "https://example.com",
   "hook_attributes": {
     "url": "https://example.com/github/events"
   },

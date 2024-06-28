@@ -7,8 +7,12 @@
 		"vscode": {
 			"extensions": [
 				"DigitalBrainstem.javascript-ejs-support",
-				"yzhang.markdown-all-in-one"
+				"yzhang.markdown-all-in-one",
+				"ms-vscode-remote.remote-containers"
 			]
 		}
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {}
 	}
 }
