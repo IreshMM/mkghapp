@@ -73,21 +73,21 @@ async function writeStringToFile(filePath, data) {
 
 async function writeAppId(appInformation) {
     const appId = appInformation.id;
-    const fileName = 'app_id';
+    const fileName = process.env.APP_ID_FILE_NAME || 'app_id';
     const filePath = `${process.env.OUTPUT_DIR}/${fileName}`
     return writeStringToFile(filePath, appId.toString());
 }
 
 async function writeAppPrivateKey(appInformation) {
     const privateKey = appInformation.pem;
-    const fileName = 'app_private_key.pem';
+    const fileName = process.env.APP_PRIVATE_KEY_FILE_NAME || 'app_private_key.pem';
     const filePath = `${process.env.OUTPUT_DIR}/${fileName}`
     return writeStringToFile(filePath, privateKey);
 }
 
 async function writeAppWebhookSecret(appInformation) {
     const webhookSecret = appInformation.webhook_secret;
-    const fileName = 'app_webhook_secret';
+    const fileName = process.env.APP_WEBHOOK_SECRET_FILE_NAME || 'app_webhook_secret';
     const filePath = `${process.env.OUTPUT_DIR}/${fileName}`
     return writeStringToFile(filePath, webhookSecret);
 }
