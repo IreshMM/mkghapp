@@ -1,5 +1,6 @@
 const https = require('https')
 const fs = require('fs');
+const crypto = require('crypto');
 
 function getManifestString() {
     const manifestPath = process.env.MANIFEST_PATH || 'manifest.json';
@@ -79,7 +80,10 @@ async function writeAppId(appInformation) {
 }
 
 async function writeAppPrivateKey(appInformation) {
-    const privateKey = appInformation.pem;
+    var privateKey = appInformation.pem;
+    if (process.env.CONVERT_PRIVATE_KEY_TO_PKCS8 == 'true') {
+        privateKey = convertPrivateKeyToPKCS8(privateKey);
+    }
     const fileName = process.env.APP_PRIVATE_KEY_FILE_NAME || 'app_private_key.pem';
     const filePath = `${process.env.OUTPUT_DIR}/${fileName}`
     return writeStringToFile(filePath, privateKey);
@@ -98,6 +102,19 @@ async function writeAppInformation(code) {
     await writeAppId(appInformation);
     await writeAppPrivateKey(appInformation);
     await writeAppWebhookSecret(appInformation);
+}
+
+function convertPrivateKeyToPKCS8(privateKey) {
+    const privateKeyObject = crypto.createPrivateKey({
+        key: privateKey,
+        format: 'pem',
+        type: 'pkcs1'
+    });
+    const privateKeyPKCS8 = privateKeyObject.export({
+        format: 'pem',
+        type: 'pkcs8'
+    });
+    return privateKeyPKCS8;
 }
 
 module.exports = {

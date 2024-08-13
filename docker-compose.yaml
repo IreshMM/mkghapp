@@ -2,7 +2,7 @@ name: mkghapp
 services:
   mkghapp:
     build: .
-    image: ireshmm/mkghapp:0.0.2
+    image: ireshmm/mkghapp:0.0.2-snapshot
     ports:
       - "${LISTEN_PORT}:${LISTEN_PORT}"
     environment:
@@ -13,6 +13,7 @@ services:
       LISTEN_PORT: "${LISTEN_PORT}"
       OUTPUT_DIR: "${OUTPUT_DIR}"
       MANIFEST_PATH: ${MANIFEST_PATH}
+      CONVERT_PRIVATE_KEY_TO_PKCS8: ${CONVERT_PRIVATE_KEY_TO_PKCS8}
     volumes:
       - ./output:${OUTPUT_DIR}
       - ./manifest.json:${MANIFEST_PATH}
