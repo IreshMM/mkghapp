@@ -98,7 +98,6 @@ async function writeAppWebhookSecret(appInformation) {
 
 async function writeAppInformation(code) {
     const appInformation = await getAppCredentials(code);
-    console.log(appInformation);
     await writeAppId(appInformation);
     await writeAppPrivateKey(appInformation);
     await writeAppWebhookSecret(appInformation);

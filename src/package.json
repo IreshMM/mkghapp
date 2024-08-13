@@ -1,6 +1,6 @@
 {
   "name": "mkghapp",
-  "version": "0.0.2-snapshot",
+  "version": "0.0.3",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --exec 'node --env-file ../.env server.js' --watch '*' --ext '*' --ignore .devcontainer --ignore node_modules",

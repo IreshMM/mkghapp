@@ -2,7 +2,7 @@ name: mkghapp
 services:
   mkghapp:
     build: .
-    image: ireshmm/mkghapp:0.0.2-snapshot
+    image: ireshmm/mkghapp:0.0.3
     ports:
       - "${LISTEN_PORT}:${LISTEN_PORT}"
     environment:
